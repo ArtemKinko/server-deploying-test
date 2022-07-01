@@ -128,6 +128,7 @@ std::string response(std::string number) {
 }
 
 int main() {
+    printf("Waiting for connecting client...");
     int sock, listener;
     struct sockaddr_in addr;
     char buf[1024];
