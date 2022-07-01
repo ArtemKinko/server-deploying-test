@@ -11,7 +11,5 @@ jobs:
           known_hosts: 'placeholder'
       - name: Adding Known Hosts
         run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-      - name: Show files in .ssh
-        run: cat ~/.ssh/id_rsa
       - name: Deploy with rsync
-        run: rsync -avz ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:C:\Users\Administrator\Desktop\server-deploy
+        run: rsync -e "ssh -p 8080 -i $HOME/.ssh/id_rsa -o StrictHostKeyChecking=no" --archive --compress --delete . ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:C:\Users\Administrator\Desktop\server-deploy
