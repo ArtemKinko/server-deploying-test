@@ -15,4 +15,4 @@ jobs:
       - name: Build server
         run: g++ server.cpp -o server
       - name: Deploy with rsync
-        run: rsync server "ssh -i $HOME/.ssh/id_rsa -o StrictHostKeyChecking=no" --archive --compress --delete . ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/artem/server-deploy
+        run: rsync ~/server ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/artem/server-deploy
