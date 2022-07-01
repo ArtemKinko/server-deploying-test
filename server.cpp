@@ -128,8 +128,8 @@ std::string response(std::string number) {
 }
 
 int main() {
-    printf("Waiting for connecting client...");
     int sock, listener;
+    printf("%s\n", "Waiting for connecting client...");
     struct sockaddr_in addr;
     char buf[1024];
     int bytes_read;
@@ -151,6 +151,7 @@ int main() {
     listen(listener, 1);
 
     while (1) {
+        std::cout << "Waiting for connecting client...";
         sock = accept(listener, 0, 0);
         if (sock < 0) {
             perror("accept");
