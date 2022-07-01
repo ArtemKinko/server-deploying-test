@@ -12,5 +12,7 @@ jobs:
           known_hosts: 'placeholder'
       - name: Adding Known Hosts
         run: ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+      - name: Build server
+        run: g++ server_loopback.cpp -o server
       - name: Deploy with rsync
-        run: rsync -e "ssh -i $HOME/.ssh/id_rsa -o StrictHostKeyChecking=no" --archive --compress --delete . ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/artem/server-deploy
+        run: rsync -e server "ssh -i $HOME/.ssh/id_rsa -o StrictHostKeyChecking=no" --archive --compress --delete . ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:/home/artem/server-deploy
