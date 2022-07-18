@@ -158,12 +158,15 @@ int main() {
             exit(3);
         }
         char message[] = "Connected!\n";
+        std::cout << "Connected!\n";
         send(sock, message, sizeof(message), 0);
         bytes_read = recv(sock, buf, 1024, 0);
         std::string number(buf);
+        std::cout << "Got a message: " + number + "\n";
         std::string resp = response(number);
         if (bytes_read <= 0) break;
         send(sock, resp.c_str(), resp.length(), 0);
+        std::cout << "Send response: " + number + "\n";
         close(sock);
     }
 
