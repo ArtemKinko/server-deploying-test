@@ -166,7 +166,7 @@ int main() {
         std::string resp = response(number);
         if (bytes_read <= 0) break;
         send(sock, resp.c_str(), resp.length(), 0);
-        std::cout << "Send response: " + number + "\n";
+        std::cout << "Send response: " + resp + "\n";
         close(sock);
     }
 
